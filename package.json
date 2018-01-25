@@ -1,0 +1,11 @@
+{
+  "name": "circle algorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "Jakub Kosior",
+  "license": "ISC"
+}
