@@ -17,5 +17,6 @@ Finishing point {x:integer y:integer}
 **Output**
 
 possible - "bezpieczny przelot jest możliwy" - safe flight possible
+
 impossible - "bezpieczny przelot nie jest możliwy" - safe flight impossible
 
