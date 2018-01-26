@@ -22,14 +22,17 @@ const recur = (prev, start, end, array) =>{
         let filtered_rest = rest_array.filter(element => intersection(start, element));
 
         if(filtered_rest.length > 0){
+
             let checked_array = filtered_rest.map(element =>{
                 return recur(prev, element, end, array);
             });
-            if (filtered_rest.length === 1 && filtered_rest.includes(end) && checked_array.includes(true)){
+
+            if (filtered_rest.length === 1 && filtered_rest[0] === includes(end) && checked_array.includes(true)){
                 return true;
             }else{
                 return checked_array;
             }
+            
         }else{
             return false;
         }
