@@ -1,5 +1,6 @@
 const readline = require("readline");
 const {algorithm} = require("./algorithms");
+const verify = require("./verify");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -33,33 +34,34 @@ const line_reader = () => {
 const catcher = (type, input) => {
 
     if (type === "max") {
-        max = parseInt(input);
+        max = verify.number(input);
         console.log("podaj dane nadajnika: ");
 
     } else if (type === "point" || type === "extra_point") {
 
         if (points.length < max) {
-            input = input.split(" ");
+            let vfd_circle = verify.arguments(input.split(" "), 3);
+            
             points.push({
-                x: parseInt(input[0]),
-                y: parseInt(input[1]),
-                r: parseInt(input[2])
+                x: vfd_circle[0],
+                y: vfd_circle[1],
+                r: vfd_circle[2]
             });
             points.length < max ? console.log("podaj dane nadajnika: ") : console.log("podaj współrzędne punktu startowego: ");
 
         } else if (type === "extra_point" && extra_points.length < extra_points_max) {
 
-            input = input.split(" ");
+            let vfd_point = verify.arguments(input.split(" "), 2);
             extra_points.push({
-                x: parseInt(input[0]),
-                y: parseInt(input[1])
+                x: vfd_point[0],
+                y: vfd_point[1]
             });
             extra_points.length < 2 ? console.log("podaj współrzędne punktu końcowego: ") : '';
         
         }
-    } else {
-
-        console.error("Too many!!!");
+    }else{
+        
+        console.log("Too many");
         rl.close();
     }
 
