@@ -27,7 +27,7 @@ const recur = (prev, start, end, array) =>{
                 return recur(prev, element, end, array);
             });
 
-            if (filtered_rest.length === 1 && filtered_rest[0] === includes(end) && checked_array.includes(true)){
+            if (filtered_rest.length === 1 && filtered_rest[0] === end && checked_array.includes(true)){
                 return true;
             }else{
                 return checked_array;
