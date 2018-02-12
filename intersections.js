@@ -1,3 +1,7 @@
+/**
+ * Paths musi zawierać tez punkt startowy i początkowy;
+ */
+
 const paths = {};
 
 const intersection = (first, second) => {

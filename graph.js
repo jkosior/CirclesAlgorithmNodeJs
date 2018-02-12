@@ -1,13 +1,16 @@
 const Intersections = require("./intersections");
 const paths = Intersections.paths;
 
-const graph = () =>{
+const graph = {};
+
+const graph_builder = () =>{
     let key_arr = Object.keys(paths);
-    let graph = {};
-    console.log(paths, key_arr)
+   
+    console.log(paths)
 
     for(let i =0; i < key_arr.length; i++){
         for(let j =0; j < key_arr.length; j++){
+            console.log(key_arr[i], key_arr[j])
             set_graph(key_arr[i], key_arr[j], graph);
         }
     }
@@ -15,7 +18,7 @@ const graph = () =>{
     return;
 }
 
-const set_graph = (key_a, key_b, graph) =>{
+const set_graph = (key_a, key_b) =>{
     if(key_a === key_b || !paths[key_a].hasOwnProperty(key_b)){
         return;
     }
@@ -64,4 +67,4 @@ const calculate_length = (point1, point2) => {
 }
 
 
-module.exports = {graph};
+module.exports = {graph_builder};
