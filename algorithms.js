@@ -1,4 +1,5 @@
-const { intersection } = require("./intersections");
+const Intersections = require("./intersections");
+const intersection = Intersections.intersection;
 
 const point_in_circle = (arr, point) =>{
     let powx;
@@ -15,7 +16,6 @@ const point_in_circle = (arr, point) =>{
 };
 
 const recur = (prev, start, end, array) =>{
- 
     if(intersection(start, end)){
         return true;
     } else {

@@ -1,6 +1,7 @@
 const readline = require("readline");
 const {algorithm} = require("./algorithms");
 const verify = require("./verify");
+const {graph} = require("./graph");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -25,6 +26,7 @@ const line_reader = () => {
     rl.on("close", () => {
         console.log("Przetwarzam dane………");
         console.log(algorithm(points, extra_points));
+        graph();
         return;
     });
 

@@ -6,7 +6,6 @@ const intersection = (first, second) => {
 
     if (two_centre <= two_radius) {
         points_of_intersection(first, second, two_centre);
-        console.log(paths);
         return true;
     }
 
@@ -23,7 +22,9 @@ const intersection = (first, second) => {
  */
 
 const points_of_intersection = (first, second, R) => {
-    let index = first.x + "" + first.y + "" + first.r;
+    let f_index = first.x + "" + first.y + "" + first.r;
+    let s_index = second.x + "" + second.y + "" + second.r;
+    paths[f_index] = paths[f_index] || {};
 
     let Radius2 = Math.pow(R, 2);
     let Radius4 = Math.pow(R, 4);
@@ -48,21 +49,22 @@ const points_of_intersection = (first, second, R) => {
     let intersection1_y = fy + gy;
     let intersection2_y = fy - gy;
 
+
     return intersection1_x !== intersection2_x && intersection1_y !== intersection2_y ?
         
-        paths[index] = {
-            "int1": {
+        paths[f_index][s_index] = {
+            int1 : {
                 x: intersection1_x,
                 y: intersection1_y
             },
-            "int2": {
+            int2 : {
                 x: intersection2_x,
                 y: intersection2_y
             }
         } :
         
-        paths[index] = {
-            "int0": {
+        paths[f_index][s_index] = {
+            int1 : {
                 x: intersection1_x,
                 y: intersection1_y
             }
@@ -70,4 +72,7 @@ const points_of_intersection = (first, second, R) => {
 
 };
 
-module.exports = {intersection};
+module.exports = {
+    "intersection": intersection, 
+    "paths": paths
+};
