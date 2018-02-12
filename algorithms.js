@@ -1,3 +1,5 @@
+const { intersection } = require("./intersections");
+
 const point_in_circle = (arr, point) =>{
     let powx;
     let powy;
@@ -11,8 +13,6 @@ const point_in_circle = (arr, point) =>{
     });
 
 };
-
-const paths = {};
 
 const recur = (prev, start, end, array) =>{
  
@@ -43,22 +43,6 @@ const recur = (prev, start, end, array) =>{
 
 const not_in = (arrFirst, arrSecond) => {
     return arrFirst.filter(x => !arrSecond.includes(x));
-};
-const intersection = (first, second) =>{
-    let two_centre = Math.hypot((first.x - second.x), (first.y - second.y));
-    let two_radius = first.r + second.r;
-    let inter = {};
-    
-    // preparation for graph construction
-    // if(two_centre == two_radius){
-
-    //     return true;
-    // } else if (two_centre < two_radius){
-
-    //     return true;
-    // }
-
-    return two_centre <= two_radius
 };
 
 const algorithm = (array, points) =>{
