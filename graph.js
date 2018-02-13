@@ -16,9 +16,7 @@ const graph_builder = () =>{
             
         }
     }
-    console.log(return_graph());
-    return;
-}
+};
 
 const set_graph = (key_a, key_b) =>{
     let a_key = paths[key_a];
@@ -92,5 +90,6 @@ const append_key = (key) => {
 
 module.exports = {
     "graph": graph_builder,
-    "app_key": append_key
+    "app_key": append_key,
+    "ret_graph": return_graph
 };

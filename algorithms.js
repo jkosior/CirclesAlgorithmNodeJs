@@ -1,9 +1,11 @@
 const Intersections = require("./intersections");
 const Graph = require("./graph");
+const Dijkstra = require("./dijkstra");
 
 const intersection = Intersections.intersection;
 const append = Intersections.append;
 const app_key = Graph.app_key;
+const get_start = Dijkstra.get_start;
 
 
 
@@ -69,6 +71,7 @@ const algorithm = (array, points) =>{
     append(start, startIn[0]);
     append(endIn[0], end);
     app_key(`${end.x}${end.y}0`);
+    get_start(`${end.x}${end.y}0`);
 
     return recur([], startIn[0], endIn[0] ,array) ? possible : impossible;
 
