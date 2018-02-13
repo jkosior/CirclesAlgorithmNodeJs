@@ -1,70 +1,93 @@
 const Intersections = require("./intersections");
 const paths = Intersections.paths;
 
+let extra_key;
 const graph = {};
 
 const graph_builder = () =>{
-    let key_arr = Object.keys(paths);
-   
-    console.log(paths)
+    
+    const key_arr = Object.keys(paths);
 
     for(let i =0; i < key_arr.length; i++){
         for(let j =0; j < key_arr.length; j++){
-            console.log(key_arr[i], key_arr[j])
-            set_graph(key_arr[i], key_arr[j], graph);
+            if(key_arr[i] !== key_arr[j]){
+                set_graph(key_arr[i], key_arr[j]);
+            }
+            
         }
     }
-    console.log(graph);
+    console.log(return_graph());
     return;
 }
 
 const set_graph = (key_a, key_b) =>{
-    if(key_a === key_b || !paths[key_a].hasOwnProperty(key_b)){
+    let a_key = paths[key_a];
+    let b_key = paths[key_b];
+
+    if (typeof a_key === "undefined" || typeof b_key === "undefined" ){
         return;
     }
-    
-    let inner = Object.keys(paths[key_b]);
-    
-    graph[`${key_a}_${key_b}_int1`] = graph[`${key_a}_${key_b}_int1`] || {};
-    
-    if (typeof paths[key_a][key_b]["int2"] !== "undefined") {
-        graph[`${key_a}_${key_b}_int2`] = graph[`${key_a}_${key_b}_int2`] || {};
+
+    let a_key_values = Object.keys(a_key)
+    let b_key_values = Object.keys(b_key)
+
+    if (a_key_values.length === 0 || b_key_values === 0){
+        return;
     }
+
+    let a_key_helper = a_key[a_key_values];
+    let a_key_itns = Object.keys(a_key_helper);
+    console.log(a_key_itns)
     
 
-    let a_key;
-    let b_key;
+    a_key_itns.forEach(itn =>{
 
-    for(let i = 0; i < inner.lenght; i++){
-        a_key = paths[key_a][key_b];
-        b_key = paths[key_b][inner[i]];
+        if(key_b in a_key){
 
-        graph[`${key_a}_${key_b}_int1`][`${key_b}_${inner[i]}_int1`] = 
-            calculate_length(a_key["int1"], b_key["int1"]);
-        
-        if (typeof b_key["int2"] !== "undefined"){
-            graph[`${key_a}_${key_b}_int1`][`${key_b}_${inner[i]}_int2`] =
-                calculate_length(a_key["int1"], b_key["int2"]);
+            graph[`${key_a}__${key_b}__${itn}`] = graph[`${key_a}__${key_b}__${itn}`] || {};
+
+            for(var i = 0; i < b_key_values.length; i++){
+                if (itn !== "end"){
+                    let b_k = b_key[b_key_values[i]];
+
+                    for(el in b_k){
+                        if(b_k === "end"){
+                            return;
+                        }
+                        console.log(itn, el)
+                        
+                        graph[`${key_a}__${key_b}__${itn}`][`${key_b}__${b_key_values[i]}__${el}`] =
+                            calculate_length(a_key_helper[itn], b_k[el]);
+                    }
+
+                    // console.log(a_key_helper[itn], b_key[b_key_values]);
+                }
+            }
+            
         }
+    });
 
-        if(typeof a_key["int2"] !== "undefined"){
-            graph[`${key_a}_${key_b}_int2`][`${key_b}_${inner[i]}_int1`] =
-                calculate_length(a_key["int2"], b_key["int1"]);
-        }
-
-        if (typeof a_key["int2"] !== "undefined" && typeof b_key["int2"] !== "undefined") {
-            graph[`${key_a}_${key_b}_int2`][`${key_b}_${inner[i]}_int2`] =
-                calculate_length(a_key["int2"], b_key["int2"]);
-        }
-
-       
-    }
-    return;  
 };
 
 const calculate_length = (point1, point2) => {
-    return Math.hypot((point1.x - point2.x), (point1.y - point2.y));
+    console.log(point1, point2);
+    return Math.hypot((point1.x - point2.x) - (point1.y, point2.y));
 }
 
+const return_graph = () =>{
+    return graph;
+};
 
-module.exports = {graph_builder};
+const append_key = (key) => {
+    paths[key] = {
+         "end": "end"
+    };
+};
+
+
+
+
+module.exports = {
+    "graph": graph_builder,
+    "app_key": append_key
+};

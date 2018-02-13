@@ -1,5 +1,12 @@
 const Intersections = require("./intersections");
+const Graph = require("./graph");
+
 const intersection = Intersections.intersection;
+const append = Intersections.append;
+const app_key = Graph.app_key;
+
+
+
 
 const point_in_circle = (arr, point) =>{
     let powx;
@@ -58,6 +65,10 @@ const algorithm = (array, points) =>{
     if(startIn.length === 0 || endIn.length === 0) {
         return impossible;    
     }
+
+    append(start, startIn[0]);
+    append(endIn[0], end);
+    app_key(`${end.x}${end.y}0`);
 
     return recur([], startIn[0], endIn[0] ,array) ? possible : impossible;
 

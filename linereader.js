@@ -1,7 +1,9 @@
 const readline = require("readline");
 const {algorithm} = require("./algorithms");
 const verify = require("./verify");
-const {graph_builder} = require("./graph");
+const Graph = require("./graph");
+
+const graph_builder = Graph.graph;
 
 const rl = readline.createInterface({
     input: process.stdin,

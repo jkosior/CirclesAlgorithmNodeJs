@@ -16,6 +16,13 @@ const intersection = (first, second) => {
     return false;
 };
 
+const append_path = (first, second) =>{
+    if(typeof first.r === "undefined") first.r = 0;
+    if(typeof second.r === "undefined") second.r = 0;
+    
+    points_of_intersection(first, second, (first.r + second.r));
+};
+
 
 /**
  * Based on:
@@ -68,7 +75,7 @@ const points_of_intersection = (first, second, R) => {
         } :
         
         paths[f_index][s_index] = {
-            int1 : {
+            int0 : {
                 x: intersection1_x,
                 y: intersection1_y
             }
@@ -78,5 +85,6 @@ const points_of_intersection = (first, second, R) => {
 
 module.exports = {
     "intersection": intersection, 
-    "paths": paths
+    "paths": paths,
+    "append": append_path
 };
