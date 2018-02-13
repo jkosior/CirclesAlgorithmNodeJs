@@ -36,9 +36,12 @@ const set_graph = (key_a, key_b) =>{
     }
 
     let a_key_helper = a_key[a_key_values];
-    let a_key_itns = Object.keys(a_key_helper);
-    console.log(a_key_itns)
     
+    if(typeof a_key_helper === "undefined"){
+        return;
+    }
+
+    let a_key_itns = Object.keys(a_key_helper);
 
     a_key_itns.forEach(itn =>{
 
@@ -47,20 +50,21 @@ const set_graph = (key_a, key_b) =>{
             graph[`${key_a}__${key_b}__${itn}`] = graph[`${key_a}__${key_b}__${itn}`] || {};
 
             for(var i = 0; i < b_key_values.length; i++){
+
                 if (itn !== "end"){
                     let b_k = b_key[b_key_values[i]];
 
+                    if (b_k === "end") {
+                        return;
+                    }
+
                     for(el in b_k){
-                        if(b_k === "end"){
-                            return;
-                        }
-                        console.log(itn, el)
                         
                         graph[`${key_a}__${key_b}__${itn}`][`${key_b}__${b_key_values[i]}__${el}`] =
                             calculate_length(a_key_helper[itn], b_k[el]);
+                            
                     }
 
-                    // console.log(a_key_helper[itn], b_key[b_key_values]);
                 }
             }
             
@@ -70,7 +74,6 @@ const set_graph = (key_a, key_b) =>{
 };
 
 const calculate_length = (point1, point2) => {
-    console.log(point1, point2);
     return Math.hypot((point1.x - point2.x) - (point1.y, point2.y));
 }
 
