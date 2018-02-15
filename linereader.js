@@ -2,8 +2,10 @@ const readline = require("readline");
 const {algorithm} = require("./algorithms");
 const verify = require("./verify");
 const Graph = require("./graph");
+const Dijkstra = require("./dijkstra");
 
 const graph_builder = Graph.graph;
+const dijkstra_algorithm = Dijkstra.dijkstra_algorithm;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -29,6 +31,7 @@ const line_reader = () => {
         console.log("Przetwarzam dane………");
         console.log(algorithm(points, extra_points));
         graph_builder();
+        dijkstra_algorithm();
         return;
     });
 

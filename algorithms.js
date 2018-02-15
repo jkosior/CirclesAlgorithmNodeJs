@@ -71,7 +71,7 @@ const algorithm = (array, points) =>{
     append(start, startIn[0]);
     append(endIn[0], end);
     app_key(`${end.x}${end.y}0`);
-    get_start(`${end.x}${end.y}0`);
+    get_start(`${start.x}${start.y}0`);
 
     return recur([], startIn[0], endIn[0] ,array) ? possible : impossible;
 
