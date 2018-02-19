@@ -2,7 +2,11 @@
 
 **Question**
 
+You recive 2D Cartesian coordinate system with drawn circles.
+
 Is it possible to go from A to B and always be inside one of circles? 
+
+What would be the shortest path and how long it is?
 
 **Input**
 
@@ -19,4 +23,8 @@ Finishing point {x:integer y:integer}
 possible - "bezpieczny przelot jest możliwy" - safe flight possible
 
 impossible - "bezpieczny przelot nie jest możliwy" - safe flight impossible
+
+shortest path - "najkrótsza trasa"
+
+shortest path length - "całkowita trasa przelotu" 
 
