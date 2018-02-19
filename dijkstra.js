@@ -12,18 +12,18 @@ const get_start_end = (starting_key, ending_key) =>{
 };
 
 const dijkstra = () =>{
+
+    let all_cost = 0;
     
     const gr_keys = Object.keys(gr);
     const start_reg = new RegExp(`^${start}__`);
     const end_reg = new RegExp(`__${end}__`);
-    console.log
+    
     const start_k = gr_keys.filter( key => key.match(start_reg) !== null)[0];
     const end_k = gr_keys.filter(key => key.match(end_reg) !== null)[0];
 
-    console.log(gr)
-
     const costs = Object.assign(
-        {finish: Infinity}, gr[start_k]
+        {finish: null}, gr[start_k]
     );
 
     const parents = {
@@ -71,7 +71,16 @@ const dijkstra = () =>{
     
     opt_path.reverse();
 
-    console.log(opt_path, costs);
+    /**
+     * Not first and not last point
+     */
+
+    for(var j = 1; j < opt_path.length-1; j++){
+        all_cost += costs [opt_path[j]];
+    }
+
+
+    console.log(opt_path, costs, all_cost);
 
 };
 
