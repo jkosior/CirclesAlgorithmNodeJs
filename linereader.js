@@ -29,12 +29,12 @@ const line_reader = () => {
 
     rl.on("close", () => {
         
-        const posibility = algorithm(points, extra_points);
+        const possibility = algorithm(points, extra_points);
 
         console.log("Przetwarzam dane………");
         console.log(posibility);
 
-        if(posibility.match(/nie/) === null){
+        if(possibility.match(/nie/) === null){
 
             graph_builder();
 
