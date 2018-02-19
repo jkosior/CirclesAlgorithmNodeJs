@@ -79,8 +79,12 @@ const dijkstra = () =>{
         all_cost += costs [opt_path[j]];
     }
 
-
-    console.log(opt_path, costs, all_cost);
+    opt_path.unshift("start");
+    
+    return {
+        path: opt_path.join(" -> "),
+        cost: all_cost
+    };
 
 };
 

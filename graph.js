@@ -76,6 +76,7 @@ const calculate_length = (point1, point2) => {
 }
 
 const return_graph = () =>{
+    graph_builder();
     return graph;
 };
 
