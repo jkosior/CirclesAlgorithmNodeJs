@@ -29,18 +29,22 @@ const line_reader = () => {
 
     rl.on("close", () => {
         
-        const posbility = algorithm(points, extra_points);
-        
-        graph_builder();
-
-        const output_data = dijkstra_algorithm();
+        const posibility = algorithm(points, extra_points);
 
         console.log("Przetwarzam dane………");
-        console.log(posbility);
-        
+        console.log(posibility);
 
-        console.log("Najkrótsza trasa : "+ output_data.path);
-        console.log("Całkowita trasa przelotu: " + output_data.cost);
+        if(posibility.match(/nie/) === null){
+
+            graph_builder();
+
+            const output_data = dijkstra_algorithm();
+
+            console.log("Najkrótsza trasa : " + output_data.path);
+            console.log("Całkowita trasa przelotu: " + output_data.cost);
+
+        }
+        
         return;
     });
 
