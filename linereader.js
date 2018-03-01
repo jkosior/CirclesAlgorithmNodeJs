@@ -40,7 +40,7 @@ const line_reader = () => {
 
             const output_data = dijkstra_algorithm();
 
-            console.log("Najkrótsza trasa : " + output_data.path);
+            console.log("Najkrótsza trasa: " + output_data.path);
             console.log("Całkowita trasa przelotu: " + output_data.cost);
 
         }
@@ -60,7 +60,7 @@ const catcher = (type, input) => {
     } else if (type === "point" || type === "extra_point") {
 
         if (points.length < max) {
-            let vfd_circle = verify.arguments(input.split(" "), 3);
+            let vfd_circle = verify.arguments(input.trim().split(/\s{1,}/g), 3);
             
             points.push({
                 x: vfd_circle[0],
@@ -71,7 +71,7 @@ const catcher = (type, input) => {
 
         } else if (type === "extra_point" && extra_points.length < extra_points_max) {
 
-            let vfd_point = verify.arguments(input.split(" "), 2);
+            let vfd_point = verify.arguments(input.trim().split(/\s{1,}/g), 2);
             extra_points.push({
                 x: vfd_point[0],
                 y: vfd_point[1]
